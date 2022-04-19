@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+#admin sdk key
+src/config/firebase_admin_sdk.json
