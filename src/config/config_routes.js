@@ -4,5 +4,5 @@ const routesDir =   `${appDir}/src/routes`
 
 module.exports.configRoutes = (app, firebaseAdmin) => {
     require(`${routesDir}/index.js`).init(app);
-    require(`${routesDir}/login.js`).init(app);
+    require(`${routesDir}/login.js`).init(app, firebaseAdmin);
 }
