@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% const rootPath = '../' %> 
-    <%- include(`${rootPath}/src/components/common_includes.ejs`) %> 
+    <% const rootPath = '../../' %> 
+    <%- include(`${rootPath}src/components/common_includes.ejs`) %> 
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buzos</title>
+    <title><%= locals.user.name %> | Buzos</title>
 </head>
 <body>
     <%- include(`${rootPath}/src/components/top_nav_bar/top_nav_bar.ejs`) %> 
+    <script type="module">
+        import * as configFirebase from `./../../src/components/firebase/import_auth.js`;
+    </script>
 </body>
 </html>
