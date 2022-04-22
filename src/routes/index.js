@@ -5,7 +5,8 @@ module.exports.init = (app) => {
     app.get('/', (req, res) => {
         const isLogged = res.locals.isLogged;
         const accessToken = res.locals.accessToken || '';
-        const user = res.locals.user || {};
+        let user = res.locals.user || {};
+        user.name = String(user.name).split(' ')[0]
         if (isLogged) {
             axios.get('https://graph.microsoft.com/v1.0/me/photo/$value', {
                 encoding: null,
@@ -18,6 +19,14 @@ module.exports.init = (app) => {
                     locals: {
                         user: user,
                         photo: "data:" + response.headers["content-type"] + ";base64," + Buffer.from(response.data, 'binary').toString('base64'),
+                    }
+                })
+            }).catch((error) => {
+                console.error(error)
+                res.render(`${appDir}/src/pages/index.ejs`, {
+                    locals: {
+                        user: user,
+                        photo: ''
                     }
                 })
             })

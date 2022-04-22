@@ -36,16 +36,29 @@
     }
     .space{
         flex: 1;
-        height: 100%;
+        height: 45px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: absolute;
+        left: 0;
+        width: 100%;
         justify-content: center;
     }
     #logo{
         display: flex;
         object-fit: contain;
         height: 100%;
+    }
+    #profile-info{
+        display: flex;
+        position: absolute;
+        flex-direction: row;
+        align-items: center;
+        width: fit-content;
+        height: 60px;
+        right: 0;
+        padding: 10px;
     }
     #profile_photo{
         display: flex;
@@ -58,6 +71,9 @@
     }
     #profile_name{
         user-select: none;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     @keyframes opacity_animation{
