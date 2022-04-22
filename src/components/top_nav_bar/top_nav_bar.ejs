@@ -1,6 +1,6 @@
 <% const rootPath = '../../../' %> 
 <%- include(`${rootPath}/src/components/top_nav_bar/top_nav_bar_style.ejs`) %> 
-
+<% locals.user = locals.user || {} %> 
 <nav class="top-nav-bar">
     <a class="item">Modelos</a>
     <a class="item">Subí el tuyo</a>
@@ -8,5 +8,5 @@
         <img src="/logo.png" alt="logo" id="logo">
     </div>
     <a id="profile_name"><%= locals.user.name %></a>
-    <img src="<%= locals.photo %>" id="profile_photo" alt="profile_photo">
+    <img src="<%= locals.photo %>" id="profile_photo" alt="">
 </nav>
