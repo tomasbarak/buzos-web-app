@@ -15,10 +15,11 @@ module.exports.configExpress = (express, app, firebaseAdmin) => {
 
     app.use((req, res, next) => {
         const idToken = req.cookies.idToken || '';
+        const accessToken = req.cookies.accessToken || '';
         firebaseAdmin.auth().verifyIdToken(idToken).then(userInfo => {
             res.locals.isLogged = true;
             res.locals.user = userInfo;
-            //console.log(userInfo)
+            res.locals.accessToken = accessToken;
             next()
         }).catch(err => {
             console.error(err)

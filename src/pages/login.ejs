@@ -8,11 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buzos</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        let firebase_auth = null;
-        let Oauth_provider = null;
         let user = null;
+        let configureFirebase = null
+    </script>
+    <script type="module">
+        import * as firebase_utils from '../../firebase/utils.js';
+        configureFirebase = firebase_utils.configFirebase;
     </script>
 </head>
 <body>
@@ -24,6 +27,11 @@
     <script>
 
         function signInWithMicrosoft() {
+            const firebaseConfigured = configureFirebase();
+
+            let firebase_auth = firebaseConfigured.firebase_auth;
+            let Oauth_provider = firebaseConfigured.auth_provider;
+
             const { getAuth, signInWithPopup, OAuthProvider } = firebase_auth;
 
             const authGot = getAuth();
@@ -31,10 +39,13 @@
             signInWithPopup(authGot, Oauth_provider).then((result) => {
                 const credential = OAuthProvider.credentialFromResult(result);
                 const accessToken = credential.accessToken;
+
                 let idToken = "";
                 authGot.currentUser.getIdToken(false).then(token => {
                     idToken = token;
                     document.cookie = `idToken=${idToken}; path=/; SameSite=Lax`
+                    document.cookie = `accessToken=${accessToken}; path=/; SameSite=Lax`
+                    window.location.reload();
                 }).catch(err => {
                     console.error(err)
                 })

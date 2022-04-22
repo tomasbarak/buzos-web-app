@@ -8,11 +8,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= locals.user.name %> | Buzos</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const user_str = '<%- JSON.stringify(locals.user) %>';
+        const user = JSON.parse(user_str);
+        let configureFirebase = null
+    </script>
+    <script type="module">
+        import * as firebase_utils from '../../firebase/utils.js';
+        configureFirebase = firebase_utils.configFirebase;
+    </script>
+    
 </head>
 <body>
     <%- include(`${rootPath}/src/components/top_nav_bar/top_nav_bar.ejs`) %> 
-    <script type="module">
-        import * as configFirebase from `./../../src/components/firebase/import_auth.js`;
+    <script>
+        window.onload = () => {
+            let firebaseConfigured = configureFirebase();
+            let firebase_auth = firebaseConfigured.firebase_auth;
+        }
     </script>
 </body>
 </html>

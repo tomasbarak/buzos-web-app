@@ -34,4 +34,31 @@
     .top-nav-bar > .item + .item{
         margin-left: 15px;
     }
+    .space{
+        flex: 1;
+    }
+    #profile_photo{
+        display: flex;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        user-select: none;
+        margin-left: 15px;
+        animation: opacity_animation 1s ease-in infinite;
+    }
+    #profile_name{
+        user-select: none;
+    }
+
+    @keyframes opacity_animation{
+        0%{
+            border: 2px solid rgba(0, 162, 255, .5);
+        }
+        50%{
+            border: 2px solid rgba(0, 162, 255, 1);
+        }
+        100%{
+            border: 2px solid rgba(0, 162, 255, .5);
+        }
+    }
 </style>
